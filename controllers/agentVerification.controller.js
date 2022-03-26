@@ -1,4 +1,4 @@
-// let {Todo, todos} = require('../models/Todo');
+
 const AgentVerification = require('../models/AgentVerification')
 
 
