@@ -1,27 +1,27 @@
 const router  = require('express').Router()
-const AgentVerificationController = require('../controllers/agentVerification.controller')
+const CandidateVerificationController = require('../controllers/candidateVerification.controller')
 
 
 router.get('', async(req, res) => {
-    let agentVerifications = await AgentVerificationController.fetchAgentVerifications();
+    let candidateVerifications = await CandidateVerificationController.fetchCandidateVerifications();
     res.json({
-        data: agentVerifications
+        data: candidateVerifications
     })
 })
 
 router.post('/add', async (req, res) => {
     let data = req.body;
-    let agentVerification = await AgentVerificationController.addAgentVerification(data)
+    let candidateVerification = await CandidateVerificationController.addCandidateVerification(data)
     
     return res.status(201).json({
-        message: agentVerification
+        message: candidateVerification
     })
 })
 
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
 
-    let data =  await AgentVerificationController.getAgentVerification(id);
+    let data =  await CandidateVerificationController.getCandidateVerification(id);
 
     if(!data) {
         return res.status(404).json({
@@ -36,24 +36,24 @@ router.get('/:id', async (req, res) => {
 router.put('/:id/update', async(req, res) => {
     
     let {id} = req.params
-    let agentVerification = await AgentVerificationController.getAgentVerification(id);
-    if(!agentVerification) {
+    let candidateVerification = await CandidateVerificationController.getCandidateVerification(id);
+    if(!candidateVerification) {
         return res.status(404).json({
             message: "verification not found"
         }) 
     }
-    await AgentVerificationController(id);
+    await CandidateVerificationController(id);
     return res.json({
-        message: "agent verification  updated successfully"
+        message: "candidate verification  updated successfully"
     })
 })
 
 router.delete('/:id/delete', async (req, res)=> {
     let { id } = req.params;
 
-    let agentDetails = await AgentVerificationController.deleteAgentVerification(id);
+    let data = await CandidateVerificationController.deleteCandidateVerification(id);
     return res.json({
-        agentDetails
+        data
     })
 })
 
