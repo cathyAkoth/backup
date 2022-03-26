@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // route imports
-const todoRoutes = require('./routes/todoRoutes');
+
 const userRoutes = require('./routes/userRoutes');
 const agentRoutes = require('./routes/agentRoutes');
 
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: true }))
 
 
 // load routes to app
-app.use('/todos', todoRoutes)
+
 app.use('/auth', userRoutes)
 app.use('/agentVerification', agentRoutes)
 
