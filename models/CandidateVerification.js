@@ -30,6 +30,37 @@ const candidateVerificationSchema = new mongoose.Schema({
     religion: {
         type : String,
     },
+    educationLevel: {
+        type : String,
+    },
+    email: {
+        type : String,
+    },
+    phoneNumber: {
+        type : String,
+    },
+    whatsAppNo : {
+        type : String,
+    },
+    passport : {
+        type : String,
+    },
+    workExperience: {
+        type : String,
+    },
+    availabilty: {
+        type : String,
+    },
+    description : {
+        type :String,
+    },
+    salary : {
+        type : String,
+    },
+    jobLocation: {
+        type : String,
+    },
+    
     createdAt: {
         type: Date,
         default: Date.now()
