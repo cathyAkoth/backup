@@ -6,10 +6,10 @@
       "description": "My User Project Application API",
       "license": {
         "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
+        "url": "https://onlybackend.herokuapp.com"
       }
     },
-    "host": "https://onlybackend.herokuapp.com",
+    "host": "localhost:5000",
     "basePath": "/",
     "tags": [
       {
