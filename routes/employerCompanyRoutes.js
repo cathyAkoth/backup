@@ -3,7 +3,7 @@ const EmployerCompanyController = require('../controllers/employerCompany.contro
 
 
 router.get('', async(req, res) => {
-    let employerCompanys = await EmployerCompanyController.fetchEmployerCompanys();
+    let employerCompanys = await EmployerCompanyController.fetchCandidateVerifications();
     res.json({
         data: employerCompanys
     })
@@ -44,11 +44,13 @@ router.put('/:id/update', async(req, res) => {
     }
     await EmployerCompanyController(id);
     return res.json({
-        message: "employer verification  updated successfully"
+        message: "candidate verification  updated successfully"
     })
 })
 
-router.delete('/:id/delete', async (req, res)=> {
+
+
+router.delete('/delete/:id', async (req, res)=> {
     let { id } = req.params;
 
     let data = await EmployerCompanyController.deleteEmployerCompany(id);

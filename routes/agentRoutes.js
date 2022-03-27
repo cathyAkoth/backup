@@ -48,7 +48,7 @@ router.put('/:id/update', async(req, res) => {
     })
 })
 
-router.delete('/:id/delete', async (req, res)=> {
+router.delete('/delete/:id', async (req, res)=> {
     let { id } = req.params;
 
     let agentDetails = await AgentVerificationController.deleteAgentVerification(id);
