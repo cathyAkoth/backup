@@ -1,27 +1,27 @@
 const router  = require('express').Router()
-const CandidateVerificationController = require('../controllers/candidateVerification.controller')
+const EmployerIndividualController = require('../controllers/employerIndividual.controller')
 
 
 router.get('', async(req, res) => {
-    let candidateVerifications = await CandidateVerificationController.fetchCandidateVerifications();
+    let employerIndividuals = await EmployerIndividualController.fetchEmployerIndividuals();
     res.json({
-        data: candidateVerifications
+        data: employerIndividuals
     })
 })
 
 router.post('/add', async (req, res) => {
     let data = req.body;
-    let candidateVerification = await CandidateVerificationController.addCandidateVerification(data)
+    let employerIndividual = await EmployerIndividualController.addEmployerIndividual(data)
     
     return res.status(201).json({
-        message: candidateVerification
+        message: employerIndividual
     })
 })
 
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
 
-    let data =  await CandidateVerificationController.getCandidateVerification(id);
+    let data =  await EmployerVerificationController.getEmployerIndividual(id);
 
     if(!data) {
         return res.status(404).json({
@@ -36,22 +36,22 @@ router.get('/:id', async (req, res) => {
 router.put('/:id/update', async(req, res) => {
     
     let {id} = req.params
-    let candidateVerification = await CandidateVerificationController.getCandidateVerification(id);
-    if(!candidateVerification) {
+    let employerIndividual = await EmployerIndividualController.getEmployerIndividual(id);
+    if(!employerIndividual) {
         return res.status(404).json({
             message: "verification not found"
         }) 
     }
-    await CandidateVerificationController(id);
+    await EmployerIndividualController(id);
     return res.json({
-        message: "candidate verification  updated successfully"
+        message: "employer verification  updated successfully"
     })
 })
 
 router.delete('/:id/delete', async (req, res)=> {
     let { id } = req.params;
 
-    let data = await CandidateVerificationController.deleteCandidateVerification(id);
+    let data = await EmployerIndividualController.deleteEmployerIndividual(id);
     return res.json({
         data
     })

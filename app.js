@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const candidateRoutes = require('./routes/candidateRoutes');
 const agentRoutes = require('./routes/agentRoutes');
+const employerIndividualRoutes = require('./routes/employerIndividualRoutes');
 
 
 const { PORT } = process.env 
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({extended: true }))
 app.use('/auth', userRoutes)
 app.use('/agentVerification', agentRoutes)
 app.use('/candidateVerification', candidateRoutes)
+app.use('/employer' , employerIndividualRoutes)
 
 // spin up the server 
 mongoose.connect(DATABASE_URL).then(() => {

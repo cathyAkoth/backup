@@ -1,6 +1,7 @@
 const mongoose  = require('mongoose');
 
-const employerVerificationIndividualSchema = new mongoose.Schema({
+
+const employerIndividualSchema = new mongoose.Schema({
     
     firstName: {
         type: String,
@@ -21,6 +22,6 @@ const employerVerificationIndividualSchema = new mongoose.Schema({
     }
 });
 
-const employerVerifactionIndividual  = mongoose.model('EmployerVerificationIndividual', employerVerificationIndividualSchema , 'employerVerificationIndividuals')
+const EmployerIndividual  = mongoose.model('EmployerIndividual', employerIndividualSchema , 'employerIndividuals')
 
-module.exports = employerVerifactionIndividual;
+module.exports = EmployerIndividual;       
