@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const path = require('path')
 const User = require('./models/userModel')
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
 
 // route imports
 
@@ -20,6 +22,27 @@ const employerCompanyRoutes  = require('./routes/employerCompanyRoutes');
 const { PORT } = process.env 
 const { WELCOME_MESSAGE, DATABASE_URL } = process.env
 
+const options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "API",
+			version: "1.0.0",
+			description: " API",
+		},
+		servers: [
+			{
+				url: "http://localhost:5000",
+			},
+		],
+	},
+	apis: ["./routes/*.js"],
+};
+
+const specs = swaggerJsDoc(options);
+
+
+
 
 // declare app isntance
 const app = express();
@@ -29,17 +52,13 @@ const app = express();
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true }))
-const swaggerUi = require('swagger-ui-express'),
-swaggerDocument = require('./swagger.json');
+
 // Middleware for serving static files.
 app.use(express.static('public'));
 app.use('/public/images', express.static(__dirname + '/public/images'));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-app.use(
-    '/api-docs',
-    swaggerUi.serve, 
-    swaggerUi.setup(swaggerDocument)
-  );
+
 //  routes to app
 
 

@@ -12,6 +12,12 @@ const agentVerifactionSchema = new mongoose.Schema({
     nin: {
         type: String
     },
+    phone:{
+        type: String
+    },
+    address:{
+        type: String
+    },
     district: {
         type: String
     },

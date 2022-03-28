@@ -2,12 +2,114 @@ const router  = require('express').Router()
 const AgentVerificationController = require('../controllers/agentVerification.controller')
 
 
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     agentVerification:
+ *       type: object
+ *       
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id 
+ *         firstName:
+ *           type: string
+ *           
+ *         lastName:
+ *           type: string
+ *         nin:
+ *           type: string
+ *         phone:
+ *           type: string
+ *         address:
+ *            type: string
+ *         district: 
+ *             type: string
+ *       
+ */
+
+ /**
+  * @swagger
+  * tags:
+  *   name: AgentVerification
+  *   
+  */
+
+/**
+ * @swagger
+ * /agentVerification:
+ *   get:
+ *     summary: Returns the list of all Agents verified
+ *     tags: [AgentVerification]
+ *     responses:
+ *       200:
+ *         description: The list of the agents
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/AgentVerification'
+ */
+
+ 
+ /**
+  * @swagger
+  * tags:
+  *   name: AgentVerification
+  *   
+  */
+
+/**
+ * @swagger
+ * /agentVerification:
+ *   get:
+ *     summary: Returns the list of all agents Verified
+ *     tags: [AgentVerification]
+ *     responses:
+ *       200:
+ *         description: The list of all agents verified
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/agentVerification'
+ */
+
+
+
 router.get('', async(req, res) => {
     let agentVerifications = await AgentVerificationController.fetchAgentVerifications();
     res.json({
         data: agentVerifications
     })
 })
+
+/**
+ * @swagger
+ * /agentVerification/add:
+ *   post:
+ *     summary: creates a new verification
+ *     tags: [AgentVerification]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/agentVerification'
+ *     responses:
+ *       200:
+ *         description: The Agent was successfully verified
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/agentVerification'
+ *       500:
+ *         description: Some server error
+ */
 
 router.post('/add', async (req, res) => {
     let data = req.body;
@@ -17,6 +119,30 @@ router.post('/add', async (req, res) => {
         message: agentVerification
     })
 })
+
+/**
+ * @swagger
+ * /agentVerification/{id}:
+ *   get:
+ *     summary: Get the agentverification by id
+ *     tags: [AgentVerification]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The AgentVerification id
+ *     responses:
+ *       200:
+ *         description: The AgentVerification description by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/agentVerification'
+ *       404:
+ *         description: The AgentVerification was not found
+ */
 
 router.get('/:id', async (req, res) => {
     let { id } = req.params;
@@ -33,6 +159,39 @@ router.get('/:id', async (req, res) => {
     })
 })
 
+/**
+ * @swagger
+ * /agentVerification/update/{id}:
+ *  put:
+ *    summary: Update the agentVerification by the id
+ *    tags: [AgentVerification]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The agentVerification id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/agentVerification'
+ *    responses:
+ *      200:
+ *        description: The AgentVerification was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/agentVerification'
+ *      404:
+ *        description: The AgentVerification was not found
+ *      500:
+ *        description: Some error happened
+ */
+
+
 router.put('/:id/update', async(req, res) => {
     
     let {id} = req.params
@@ -47,6 +206,27 @@ router.put('/:id/update', async(req, res) => {
         message: "agent verification  updated successfully"
     })
 })
+
+/**
+ * @swagger
+ * /agentVerification/delete/{id}:
+ *   delete:
+ *     summary: Remove the agentVerification by id
+ *     tags: [AgentVerification]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The AgentVerified id
+ * 
+ *     responses:
+ *       200:
+ *         description: The agentVerification was deleted
+ *       404:
+ *         description: The agentVerification was not found
+ */
 
 router.delete('/delete/:id', async (req, res)=> {
     let { id } = req.params;
