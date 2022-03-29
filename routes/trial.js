@@ -1,8 +1,9 @@
 const router  = require('express').Router()
 const multer = require('multer');
- const CandidateVerificationController = require('../controllers/candidateVerification.controller');
+const CandidateVerificationController = require('../controllers/candidateVerification.controller');
 const CandidateVerification = require('../models/CandidateVerification');
 const path = require('path')
+
 /**
  * @swagger
  * components:
@@ -107,20 +108,16 @@ router.get('', async(req, res) => {
 })
 
 // Image upload.
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'public/images');
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.originalname);
+//     }
+//     });
 
-var upload = multer({ storage: storage })
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/upload');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-    },
-    });
-    
-
-    
-
+      
     
  /**
  * @swagger
@@ -146,24 +143,40 @@ var storage = multer.diskStorage({
  */
   
 
-var upload = multer({ storage: storage })
+// router.post('/add',upload.single('image'), async (req, res) => {
+//     let data = req.body;
+    
 
-router.post('/add',upload.fields([{
-           name: 'image', maxCount: 1
-         }, {
-           name: 'fil', maxCount: 1
-         }]), async (req, res) => {
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "public/uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+    },
+  });
+  
+  var upload = multer({ storage: storage });
+  
+  var candidateVerification = upload.fields([{ name: 'image', maxCount: 1 }, { name: 'fil', maxCount: 1 }])
 
-            
-    let data = req.body;
-    let candidateVerification = new CandidateVerification(data);
-    // candidateVerification.image = req.file.path;
-    // candidateVerification.fil = req.file.path;
+  router.post('/add',candidateVerification, function (req, res, next){
+    if(req.files){
+        console.log(req.files)
 
-    await candidateVerification.save()
-    return res.status(201).json({
-        message: candidateVerification
-    })
+        console.log("files uploaded")
+    }
+    
+    //  let data = req.body;
+    //  let candidateVerification = await CandidateVerification.addCandidateVerification(data);
+    //  return res.status(201).json({
+    //     message: candidateVerification
+    // })
+    
+     
+
+    
+    
 })
 
 /**

@@ -192,7 +192,7 @@ router.get('/:id', async (req, res) => {
  */
 
 
-router.put('/:id/update', async(req, res) => {
+router.put('/update/id', async(req, res) => {
     
     let {id} = req.params
     let agentVerification = await AgentVerificationController.getAgentVerification(id);

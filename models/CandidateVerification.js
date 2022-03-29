@@ -60,6 +60,9 @@ const candidateVerificationSchema = new mongoose.Schema({
     salary : {
         type : String,
     },
+    fil : {
+        type: String,
+    },
     jobLocation: {
         type : String,
     },

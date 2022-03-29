@@ -5,6 +5,14 @@ class   CandidateVerificationController {
     static async addCandidateVerification (data) {
         
         let candidateVerification = new CandidateVerification(data);
+        // let data = req.body;
+    
+   
+    
+    candidateVerification.image = req.file.path;
+    candidateVerification.fil = req.file.path;
+    
+    await candidateVerification.save()
 
         await candidateVerification.save()
         let candidateVerifications = await CandidateVerification.find();
