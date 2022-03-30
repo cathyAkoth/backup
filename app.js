@@ -6,9 +6,16 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const path = require('path')
 const User = require('./models/userModel')
+const fs = require('fs')
 const session  = require('express-session');
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
+
+
+
+
+
+
 
 // route imports
 
@@ -17,6 +24,8 @@ const candidateRoutes = require('./routes/candidateRoutes');
 const agentRoutes = require('./routes/agentRoutes');
 const employerIndividualRoutes = require('./routes/employerIndividualRoutes');
 const employerCompanyRoutes  = require('./routes/employerCompanyRoutes');
+const productRoutes = require('./products/route');
+const cartRoutes = require('./cart/route');
 
 
 
@@ -93,6 +102,9 @@ app.use('/agentVerification', agentRoutes)
 app.use('/candidateVerification', candidateRoutes)
 app.use('/employer' , employerIndividualRoutes)
  app.use('/employer/company' , employerCompanyRoutes)
+ app.use('/products', productRoutes)
+ app.use('/cart' , cartRoutes)
+ 
  
 
 
