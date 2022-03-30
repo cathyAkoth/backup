@@ -24,8 +24,8 @@ const candidateRoutes = require('./routes/candidateRoutes');
 const agentRoutes = require('./routes/agentRoutes');
 const employerIndividualRoutes = require('./routes/employerIndividualRoutes');
 const employerCompanyRoutes  = require('./routes/employerCompanyRoutes');
-const productRoutes = require('./products/route');
-const cartRoutes = require('./cart/route');
+const productRoutes = require('./routes/routes');
+const cartRoutes = require('./routes/cartRoute');
 
 
 

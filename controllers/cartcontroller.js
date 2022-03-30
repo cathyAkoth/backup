@@ -1,5 +1,5 @@
-const cartRepository = require('./repository')
-    const productRepository = require('../products/repository');
+const cartRepository = require('../cartrepository')
+    const productRepository = require('../repository');
     
     exports.addItemToCart = async (req, res) => {
         const {

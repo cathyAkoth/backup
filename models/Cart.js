@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let ItemSchema = new Schema({
-    candidateVerificationId: {
+    productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "CandidateVerification",
+        ref: "Product",
     },
-    firstName: {
-        type: String,
-        
+    quantity: {
+        type: Number,
+        required: true,
+        min: [1, 'Quantity can not be less then 1.']
     },
-    lastName: {
-        type: String,
-        
+    price: {
+        type: Number,
+        required: true
     },
     total: {
         type: Number,
