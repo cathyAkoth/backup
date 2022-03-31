@@ -99,11 +99,11 @@ app.use(async (req, res, next) => {
   app.use('/', routes);
 
 app.use('/agentVerification', agentRoutes)
-app.use('/candidateVerification', candidateRoutes)
+// app.use('/candidateVerification', candidateRoutes)
 app.use('/employer' , employerIndividualRoutes)
  app.use('/employer/company' , employerCompanyRoutes)
- app.use('/products', productRoutes)
- app.use('/cart' , cartRoutes)
+ app.use('/candidateVerification', productRoutes)
+ app.use('/shortlist' , cartRoutes)
  
  
 
